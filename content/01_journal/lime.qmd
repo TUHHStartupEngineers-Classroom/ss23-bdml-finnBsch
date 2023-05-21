@@ -1,0 +1,145 @@
+---
+title: "Explaining Models with LIME"
+author: "Finn L. Busch"
+---
+First, we load some libraries
+```{r}
+#| message: false 
+#| warning: false
+library(h2o)
+library(recipes)
+library(readxl)
+library(tidyverse)
+library(tidyquant)
+library(lime)
+library(rsample)
+```
+```{r}
+#| include: false
+h2o.init()
+```
+We load the data and the trained model
+```{r}
+product_data <- read_csv("../../product_backorders.csv")
+split_obj<- initial_split(product_data, prop = 0.85)
+train_readable_tbl<- training(split_obj)
+test_readable_tbl<- testing(split_obj)
+
+recipe_obj <- recipe(went_on_backorder ~., data = train_readable_tbl) %>% 
+  step_zv(all_predictors()) %>%
+  prep()
+train_tbl<- bake(recipe_obj, new_data = train_readable_tbl)
+test_tbl<- bake(recipe_obj, new_data = test_readable_tbl)
+automl_leader <- h2o.loadModel(paste("automl_models/", "StackedEnsemble_AllModels_3_AutoML_8_20230521_163641", sep=""))
+```
+We create the explainer object 
+```{r}
+
+predictions_tbl <- automl_leader %>% 
+  h2o.predict(newdata = as.h2o(test_tbl)) %>%
+  as.tibble() %>%
+  bind_cols(
+    test_tbl %>%
+      select(everything())
+  )
+
+summary(train_tbl)
+
+explainer <- train_tbl %>%
+  select(-went_on_backorder) %>%
+  lime(
+    model           = automl_leader,
+    bin_continuous  = TRUE,
+    n_bins          = 4,
+    quantile_bins   = TRUE
+  )
+explainer
+explanation <- test_tbl %>%
+  slice(7) %>%
+  select(-went_on_backorder) %>%
+  lime::explain(
+    explainer = explainer,
+    n_labels   = 1,
+    n_features = 8,
+    n_permutations = 5000,
+    kernel_width   = 1
+  )
+explanation %>%
+  as.tibble() %>%
+  select(feature:prediction) 
+```
+Now can recreate what "plot_features" achieves
+```{r}
+explanation %>% 
+  as.tibble()
+
+case_1 <- explanation %>%
+  filter(case == 1)
+
+
+# recreated plot features
+theme_lime <- function(...) {
+  theme_minimal() +
+    theme(
+      strip.text = element_text(face = 'bold', size = 9),
+      plot.margin = margin(15, 15, 15, 15),
+      legend.background = element_blank(),
+      legend.key = element_blank(),
+      panel.grid.major.y = element_blank(),
+      panel.grid.minor.y = element_blank(),
+      axis.ticks = element_blank(),
+      legend.position = 'bottom',
+      panel.spacing.y = unit(15, 'pt'),
+      strip.text.x = element_text(margin = margin(t = 2, b = 2), hjust = 0),
+      axis.title.y = element_text(margin = margin(r = 10)),
+      axis.title.x = element_text(margin = margin(t = 10)),
+      ...
+    )
+}
+
+description <- ""
+desc_width <- max(nchar(description)) + 1
+description <- paste0(format(description, width = desc_width), case_1$feature_desc)
+case_1$description <- factor(description, levels = description[order(abs(case_1$feature_weight))])
+case_1$`Explanation fit` <- format(case_1$model_r2, digits = 2)
+case_1$probability <- format(case_1$label_prob, digits = 2)
+ggplot(case_1) + 
+  facet_wrap(~ case + label  + probability + `Explanation fit`, labeller = label_both, scales = 'free_y', ncol = 1) +
+  geom_col(aes_(~description, ~feature_weight))+ 
+  coord_flip() +
+  theme_lime() 
+```
+In a similar fashion, we can recreate the "plot_explanations" function
+```{r}
+explanation <- test_tbl %>%
+  slice(1:20) %>%
+  select(-went_on_backorder) %>%
+  lime::explain(
+    explainer = explainer,
+    n_labels   = 1,
+    n_features = 8,
+    n_permutations = 5000,
+    kernel_width   = 0.5
+  )
+
+explanation %>%
+  as.tibble()
+n_cases <- unique(as.numeric(explanation$case))
+explanation$case <- factor(explanation$case, levels = as.character(sort(n_cases)))
+explanation$feature_desc <- factor(
+  explanation$feature_desc,
+  levels = rev(unique(explanation$feature_desc[order(explanation$feature, explanation$feature_value)]))
+)
+ggplot(explanation, aes_(~case, ~feature_desc)) +
+  geom_tile(aes_(fill = ~feature_weight)) + 
+  scale_x_discrete('Case', expand = c(0, 0)) +
+  scale_y_discrete('Feature', expand = c(0, 0)) +
+  scale_fill_gradient2('Feature\nweight', low = 'firebrick', mid = '#f7f7f7', high = 'steelblue') +
+  theme_lime()+ 
+  theme(panel.border = element_rect(fill = NA, colour = 'grey60', size = 1),
+        panel.grid = element_blank(),
+        legend.position = 'right',
+        axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1)) + 
+  facet_wrap(~label)
+```
+

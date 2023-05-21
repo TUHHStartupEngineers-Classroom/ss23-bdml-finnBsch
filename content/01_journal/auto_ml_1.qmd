@@ -1,0 +1,47 @@
+---
+title: "Automated Machine Learning Challenge 1"
+author: "Finn L. Busch"
+---
+
+In this challenge, questions should be answered using the ggpairs plot.
+
+1. Question: What can you deduce about the interaction between Monthly Income and Attrition?
+Answer: c. Those that are leaving have a lower Monthly Income
+
+2. Question: What can you deduce about the interaction between Percent Salary Hike and Attrition?
+Answer: d. It's difficult to deduce anything based on the visualization
+
+3. Question: What can you deduce about the interaction between Stock Option Level and Attrition?
+Answer: b. Those that are staying have a higher stock option level
+
+4. Question: What can you deduce about the interaction between Environment Satisfaction and Attrition?
+Answer: a. A higher proportion of those leaving have a low environment satisfaction level
+
+5. Question: What can you deduce about the interaction between Work Life Balance and Attrition?
+Answer: b. Those that are staying have a higher density of 2's and 3's
+
+6. Question: What Can you deduce about the interaction between Job Involvement and Attrition?
+Answer: a. Those that are leaving have a lower density of 3's and 4's
+
+7. Question: What can you deduce about the interaction between Over Time and Attrition?
+Answer: a. The proportion of those leaving that are working Over Time are high compared to those that are not leaving
+
+8. Question: What can you deduce about the interaction between Training Times Last Year and Attrition
+Answer: b. People that leave tend to have less annual trainings
+
+9. Question: What can you deduce about the interaction between Years At Company and Attrition
+Answer: b. People that leave tend to have less working years at the company
+
+10. Question: What can you deduce about the interaction between Years Since Last Promotion and Attrition?
+Answer: c. It's difficult to deduce anything based on the visualization
+
+# Question 1: c), lower income
+# Question 2: d) difficult
+# Question 3: b) ? staying with higher level?
+# Question 4: a) higher proportion as low level
+# Question 5: b) higher dens of 2 and 3 are staying
+# Question 6: a) leaving has nlower 3's and 4's
+# Question 7: a)
+# Question 8: b) less anual training
+# Question 9: b) leave with less years
+# Question 10: c) difficult
