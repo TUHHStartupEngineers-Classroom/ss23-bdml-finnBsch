@@ -1,0 +1,100 @@
+---
+title: "Supervised ML- Regression (I)"
+author: "Finn L. Busch"
+---
+First, we load some libraries
+```{r}
+#| message: false 
+#| warning: false
+# Standard
+library(tidyverse)
+
+# Modeling
+library(parsnip)
+
+# Preprocessing & Sampling
+library(recipes)
+library(rsample)
+library(workflows)
+# Modeling Error Metrics
+library(yardstick)
+
+# Plotting Decision Trees
+library(rpart.plot)
+```
+We load the data
+```{r}
+bike_features_tbl <- readRDS("../../bike_features_tbl.rds")
+glimpse(bike_features_tbl)
+
+bike_features_tbl <- bike_features_tbl %>% 
+  # locl some variables out
+  select(frame_material:gender, `Rear Derailleur`, `Shift Lever`) %>% 
+  # get rid of NAs
+  mutate_if(is.numeric, ~replace(., is.na(.), 0))
+
+
+bike_features_tbl <- bike_features_tbl %>% 
+  # add an ID
+  mutate(id = row_number())
+
+# run both following commands at the same time
+set.seed(seed = 123)
+split_obj <- rsample::initial_split(bike_features_tbl, prop   = 0.80, 
+                                    strata = "category_2")
+
+# Check if testing contains all category_2 values
+split_obj %>% training() %>% distinct(category_2)
+split_obj %>% testing() %>% distinct(category_2)
+
+# Assign training and test data
+train_tbl <- training(split_obj)
+test_tbl  <- testing(split_obj)
+train_tbl <- train_tbl %>% set_names(str_replace_all(names(train_tbl), " |-", "_"))
+test_tbl  <- test_tbl  %>% set_names(str_replace_all(names(test_tbl),  " |-", "_"))
+```
+
+We create a feature recipe and define our model
+```{r}
+#| warning: false
+#| message: false
+bike_recipe_obj <- 
+  recipe(price ~ ., data = train_tbl) %>% 
+  step_rm(id, weight, category_1, category_3, gender) %>%
+  step_dummy(all_nominal(), -all_outcomes()) %>%
+  prep()
+
+train_transformed_tbl <- bake(bike_recipe_obj, new_data = train_tbl)
+test_transformed_tbl <- bake(bike_recipe_obj, new_data = test_tbl)
+
+mymodel <- 
+  decision_tree(mode= "regression",
+                cost_complexity = 0.001,
+                tree_depth      = 5,
+                min_n           = 7) %>% 
+  set_engine("rpart")
+```
+
+Now, we can create a workflow for the features and model
+```{r}
+bike_wf <- 
+  workflow() %>% 
+  add_model(mymodel) %>% 
+  add_recipe(bike_recipe_obj)
+```
+
+Lastly, we can fit the model and look at the results
+```{r}
+#| warning: false
+#| message: false
+bike_ft <- bike_wf %>%
+  fit(data=train_tbl)
+
+bf_pred <- 
+  predict(bike_ft, test_tbl) %>% 
+  bind_cols(test_tbl %>% select(price)) 
+
+bf_pred
+
+bf_pred %>% yardstick::metrics(truth = price, estimate = .pred)
+```
