@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Joschka Schwarz">
+<meta name="author" content="Finn L. Busch">
 
-<title>Business Decisions with Machine Learning Journal - My Lab Journal</title>
+<title>Business Decisions with Machine Learning Journal - Automated Machine Learning Challenge 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,28 +24,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/icons/favicon.svg" rel="icon" type="image/svg+xml">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/icons/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,14 +66,14 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Business Decisions with Machine Learning Journal</span>
     </a>
   </div>
@@ -86,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">
+    <a class="nav-link" href="../../index.html">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -95,23 +92,23 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-journal">    
         <li>
-    <a class="dropdown-item" href="./content/01_journal/01_ml_fund.html">
+    <a class="dropdown-item" href="../../content/01_journal/01_ml_fund.html">
  <span class="dropdown-text">01 Machine Learning Fundamentals</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./content/01_journal/ml.html">
+    <a class="dropdown-item" href="../../content/01_journal/ml.html">
  <span class="dropdown-text">02 Supervised ML - Regression</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./content/01_journal/auto_ml_1.html">
+    <a class="dropdown-item" href="../../content/01_journal/auto_ml_1.html">
  <span class="dropdown-text">03 Automated Machine Learning Questions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./content/01_journal/auto_ml_perf.html">
+    <a class="dropdown-item" href="../../content/01_journal/auto_ml_perf.html">
  <span class="dropdown-text">04/05 Automated Machine Learning (II) and Performance measures</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./content/01_journal/lime.html">
+    <a class="dropdown-item" href="../../content/01_journal/lime.html">
  <span class="dropdown-text">06 Explaining Models with LIME</span></a>
   </li>  
     </ul>
@@ -129,14 +126,30 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#question-1-c-lower-income" id="toc-question-1-c-lower-income" class="nav-link active" data-scroll-target="#question-1-c-lower-income"><span class="toc-section-number">1</span>  Question 1: c), lower income</a></li>
+  <li><a href="#question-2-d-difficult" id="toc-question-2-d-difficult" class="nav-link" data-scroll-target="#question-2-d-difficult"><span class="toc-section-number">2</span>  Question 2: d) difficult</a></li>
+  <li><a href="#question-3-b-staying-with-higher-level" id="toc-question-3-b-staying-with-higher-level" class="nav-link" data-scroll-target="#question-3-b-staying-with-higher-level"><span class="toc-section-number">3</span>  Question 3: b) ? staying with higher level?</a></li>
+  <li><a href="#question-4-a-higher-proportion-as-low-level" id="toc-question-4-a-higher-proportion-as-low-level" class="nav-link" data-scroll-target="#question-4-a-higher-proportion-as-low-level"><span class="toc-section-number">4</span>  Question 4: a) higher proportion as low level</a></li>
+  <li><a href="#question-5-b-higher-dens-of-2-and-3-are-staying" id="toc-question-5-b-higher-dens-of-2-and-3-are-staying" class="nav-link" data-scroll-target="#question-5-b-higher-dens-of-2-and-3-are-staying"><span class="toc-section-number">5</span>  Question 5: b) higher dens of 2 and 3 are staying</a></li>
+  <li><a href="#question-6-a-leaving-has-nlower-3s-and-4s" id="toc-question-6-a-leaving-has-nlower-3s-and-4s" class="nav-link" data-scroll-target="#question-6-a-leaving-has-nlower-3s-and-4s"><span class="toc-section-number">6</span>  Question 6: a) leaving has nlower 3’s and 4’s</a></li>
+  <li><a href="#question-7-a" id="toc-question-7-a" class="nav-link" data-scroll-target="#question-7-a"><span class="toc-section-number">7</span>  Question 7: a)</a></li>
+  <li><a href="#question-8-b-less-anual-training" id="toc-question-8-b-less-anual-training" class="nav-link" data-scroll-target="#question-8-b-less-anual-training"><span class="toc-section-number">8</span>  Question 8: b) less anual training</a></li>
+  <li><a href="#question-9-b-leave-with-less-years" id="toc-question-9-b-leave-with-less-years" class="nav-link" data-scroll-target="#question-9-b-leave-with-less-years"><span class="toc-section-number">9</span>  Question 9: b) leave with less years</a></li>
+  <li><a href="#question-10-c-difficult" id="toc-question-10-c-difficult" class="nav-link" data-scroll-target="#question-10-c-difficult"><span class="toc-section-number">10</span>  Question 10: c) difficult</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">My Lab Journal</h1>
-<p class="subtitle lead">Business Data Science Basics</p>
+<h1 class="title">Automated Machine Learning Challenge 1</h1>
 </div>
 
 
@@ -146,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Joschka Schwarz </p>
+             <p>Finn L. Busch </p>
           </div>
   </div>
     
@@ -157,21 +170,48 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="assets/logo/TIE_logo.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="assets/logo/TIE_logo.svg" class="img-fluid figure-img" style="width:80.0%"></a></p>
-</figure>
-</div>
-<p>This is a template example for lab journaling. Students in the data science courses at the Institute of Entrepreneurship will use this template to learn R for business analytics. Students can replace this text as they wish.</p>
-<section id="how-to-use" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-use">How to use</h2>
+<p>In this challenge, questions should be answered using the ggpairs plot.</p>
 <ol type="1">
-<li><p>Accept the assignment and get your own github repo.</p></li>
-<li><p>Blog/journal what you are doing in R, by editing the <code>.qmd</code> files.</p></li>
-<li><p>See the links page for lots of helpful links on learning R.</p></li>
-<li><p>Change everything to make it your own.</p></li>
-<li><p>Make sure to render you website everytime before you want to upload changes</p></li>
+<li><p>Question: What can you deduce about the interaction between Monthly Income and Attrition? Answer: c.&nbsp;Those that are leaving have a lower Monthly Income</p></li>
+<li><p>Question: What can you deduce about the interaction between Percent Salary Hike and Attrition? Answer: d.&nbsp;It’s difficult to deduce anything based on the visualization</p></li>
+<li><p>Question: What can you deduce about the interaction between Stock Option Level and Attrition? Answer: b. Those that are staying have a higher stock option level</p></li>
+<li><p>Question: What can you deduce about the interaction between Environment Satisfaction and Attrition? Answer: a. A higher proportion of those leaving have a low environment satisfaction level</p></li>
+<li><p>Question: What can you deduce about the interaction between Work Life Balance and Attrition? Answer: b. Those that are staying have a higher density of 2’s and 3’s</p></li>
+<li><p>Question: What Can you deduce about the interaction between Job Involvement and Attrition? Answer: a. Those that are leaving have a lower density of 3’s and 4’s</p></li>
+<li><p>Question: What can you deduce about the interaction between Over Time and Attrition? Answer: a. The proportion of those leaving that are working Over Time are high compared to those that are not leaving</p></li>
+<li><p>Question: What can you deduce about the interaction between Training Times Last Year and Attrition Answer: b. People that leave tend to have less annual trainings</p></li>
+<li><p>Question: What can you deduce about the interaction between Years At Company and Attrition Answer: b. People that leave tend to have less working years at the company</p></li>
+<li><p>Question: What can you deduce about the interaction between Years Since Last Promotion and Attrition? Answer: c.&nbsp;It’s difficult to deduce anything based on the visualization</p></li>
 </ol>
+<section id="question-1-c-lower-income" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Question 1: c), lower income</h1>
+</section>
+<section id="question-2-d-difficult" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Question 2: d) difficult</h1>
+</section>
+<section id="question-3-b-staying-with-higher-level" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Question 3: b) ? staying with higher level?</h1>
+</section>
+<section id="question-4-a-higher-proportion-as-low-level" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Question 4: a) higher proportion as low level</h1>
+</section>
+<section id="question-5-b-higher-dens-of-2-and-3-are-staying" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Question 5: b) higher dens of 2 and 3 are staying</h1>
+</section>
+<section id="question-6-a-leaving-has-nlower-3s-and-4s" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Question 6: a) leaving has nlower 3’s and 4’s</h1>
+</section>
+<section id="question-7-a" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Question 7: a)</h1>
+</section>
+<section id="question-8-b-less-anual-training" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Question 8: b) less anual training</h1>
+</section>
+<section id="question-9-b-leave-with-less-years" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Question 9: b) leave with less years</h1>
+</section>
+<section id="question-10-c-difficult" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Question 10: c) difficult</h1>
 
 
 </section>
@@ -426,7 +466,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","loop":true});</script>
 
 
 
